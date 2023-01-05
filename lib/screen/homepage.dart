@@ -79,6 +79,7 @@ class _HomePgaeState extends State<HomePgae> {
     );
   }
 
+//Switch case
   buildPage() {
     switch (index) {
       case 1:
