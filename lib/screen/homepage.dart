@@ -41,6 +41,8 @@ class _HomePgaeState extends State<HomePgae> {
     print('abc');
     // print(index);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      // persistentFooterButtons: [Text('data')],
       bottomNavigationBar: AnimatedBottomNavigationBar(
         // elevation: ,
         // gapWidth: 100,
