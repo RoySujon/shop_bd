@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shop_bd/screen/home.dart';
 import 'package:shop_bd/screen/login_page.dart';
 import 'package:shop_bd/screen/signup_page.dart';
+import 'package:shop_bd/utls/const.dart';
 
 class HomePgae extends StatefulWidget {
   const HomePgae({super.key});
@@ -41,16 +43,18 @@ class _HomePgaeState extends State<HomePgae> {
     print('abc');
     // print(index);
     return Scaffold(
+      // primary: true,
       resizeToAvoidBottomInset: false,
       // persistentFooterButtons: [Text('data')],
       bottomNavigationBar: AnimatedBottomNavigationBar(
+        backgroundColor: kMainColor,
         // elevation: ,
         // gapWidth: 100,
         iconSize: 40,
-
-        activeColor: Colors.deepPurpleAccent.shade100,
+        inactiveColor: kHoverColor,
+        activeColor: kWhite,
         // splashColor: Colors.amber,
-        borderColor: Colors.green,
+        borderColor: kBlack,
         // splashColor: Colors.greenAccent,
 
         // iconSize: 10,
@@ -67,8 +71,17 @@ class _HomePgaeState extends State<HomePgae> {
         //other params
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor:
-            index == 5 ? Colors.deepPurpleAccent.shade100 : Colors.grey,
+        shape: CircleBorder(
+            side: BorderSide(
+                width: 1, color: index == 5 ? Colors.red : kMainColor)),
+        // foregroundColor: Colors.amber,
+        child: Icon(
+          index == 5 ? Icons.favorite : Icons.favorite_border,
+          color: index == 5 ? kWhite : kMainColor,
+        ),
+        backgroundColor: index == 5 ? kMainColor : Colors.transparent,
+        elevation: 0,
+
         onPressed: () {
           index = 5;
           setState(() {});

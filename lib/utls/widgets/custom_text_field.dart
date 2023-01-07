@@ -23,6 +23,8 @@ class CTF extends StatelessWidget {
       cursorColor: Colors.deepPurple,
       controller: controller,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         // border: InputBorder.none,
         hintText: hint.toString(),
         hintStyle: GoogleFonts.nunito(color: Colors.black45),

@@ -48,15 +48,21 @@ class SubtitleText12 extends StatelessWidget {
     this.fs = 12,
     this.fw = FontWeight.w600,
     this.clr = const Color(0xFF000000),
+    this.ml,
+    this.of,
   });
   final String text;
   final double? fs;
   final FontWeight? fw;
   final Color? clr;
+  final int? ml;
+  final TextOverflow? of;
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
+        maxLines: ml,
+        overflow: of,
         style: GoogleFonts.inter(fontSize: fs, fontWeight: fw, color: clr));
   }
 }
