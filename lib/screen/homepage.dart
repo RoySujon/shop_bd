@@ -43,6 +43,7 @@ class _HomePgaeState extends State<HomePgae> {
     print('abc');
     // print(index);
     return Scaffold(
+      extendBody: true,
       // primary: true,
       resizeToAvoidBottomInset: false,
       // persistentFooterButtons: [Text('data')],

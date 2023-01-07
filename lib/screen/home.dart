@@ -24,229 +24,236 @@ class _HOMEState extends State<HOME> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+          bottom: false,
           child: RefreshIndicator(
-        // backgroundColor: kHoverColor,
-        // triggerMode: RefreshIndicatorTriggerMode.anywhere,
-        // semanticsLabel: 'Refresh',
-        // semanticsValue: 'S',
-        // displacement: 100,
+            // backgroundColor: kHoverColor,
+            // triggerMode: RefreshIndicatorTriggerMode.anywhere,
+            // semanticsLabel: 'Refresh',
+            // semanticsValue: 'S',
+            // displacement: 100,
 
-        color: kMainColor,
-        onRefresh: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePgae(),
-            )),
-        child: Stack(
-          children: [
-            CustomScrollView(
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              controller: _scrollController,
-              slivers: [
-                SliverAppBar(
-                  // brightness: Brightness.light,
-                  systemOverlayStyle: SystemUiOverlayStyle(
-                      statusBarBrightness: Brightness.light),
-                  // toolbarHeight: 100,
-                  // expandedHeight: 100,
-                  title: Image.network('https://nittoponno.shop/logo/logo.png',
-                      color: Colors.white, height: 40),
-                  centerTitle: true,
-                  // backgroundColor: Colors.deepPurpleAccent.shade100,
-                  // floating: true,
-                  actions: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12.0),
-                      child: IconButton(
-                        onPressed: () {
-                          totalQuantity = totalQuantity + 50;
-                          setState(() {});
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (_) => CartScreen()));
-                        },
-                        icon: Stack(clipBehavior: Clip.none, children: [
-                          Icon(Icons.shopping_cart),
-                          totalQuantity == 0
-                              ? Text('')
-                              : Positioned(
-                                  top: -4,
-                                  right: -4,
-                                  child: CircleAvatar(
-                                    radius: totalQuantity < 1000 ? 7 : 10,
-                                    backgroundColor: totalQuantity > 10
-                                        ? Colors.green
-                                        : Colors.red,
-                                    child: Text(
-                                      totalQuantity.toString(),
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.white),
-                                    ),
-                                  )),
-                        ]),
-                      ),
-                    ),
-                  ],
-                  leading: Icon(Icons.abc),
-                ),
-                SliverPersistentHeader(
-                  floating: true,
-                  pinned: true,
-                  delegate: SliverDelegate(
-                      child: AppBar(
-                    // backgroundColor: kHoverColor,
-                    elevation: 0,
-                    centerTitle: true,
-                    toolbarHeight: 70,
-                    automaticallyImplyLeading: false,
-                    actions: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12.0),
-                        child: IconButton(
-                          onPressed: () {
-                            totalQuantity = totalQuantity + 50;
-                            setState(() {});
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (_) => CartScreen()));
-                          },
-                          icon: Stack(clipBehavior: Clip.none, children: [
-                            Icon(Icons.shopping_cart),
-                            totalQuantity == 0
-                                ? Text('')
-                                : Positioned(
-                                    top: -4,
-                                    right: -4,
-                                    child: CircleAvatar(
-                                      radius: totalQuantity < 1000 ? 7 : 10,
-                                      backgroundColor: totalQuantity > 10
-                                          ? Colors.green
-                                          : Colors.red,
-                                      child: Text(
-                                        totalQuantity.toString(),
-                                        style: TextStyle(
-                                            fontSize: 8, color: Colors.white),
-                                      ),
-                                    )),
-                          ]),
-                        ),
-                      )
-                    ],
-                    title: TextFormField(
-                      // textInputAction: TextInputAction.continueAction,
-                      // autocorrect: true,
-                      // smartDashesType: SmartDashesType.enabled,
-
-                      cursorColor: Colors.deepPurple,
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        // border: InputBorder.none,
-                        hintText: 'Search Products...',
-                        hintMaxLines: 1,
-                        // label: SubtitleText12('dkdk'),
-                        // counterText: 'GOUTOm',
-                        // hintTextDirection: TextDirection.rtl,
-                        // alignLabelWithHint: true,
-                        // hintTextDirection: TextDirection.rtl,
-                        floatingLabelAlignment: FloatingLabelAlignment.center,
-
-                        hintStyle: GoogleFonts.nunito(
-                          color: Colors.black45,
-                          fontStyle: FontStyle.italic,
-                        ),
-                        // fillColor: Colors.black12,
-                        // filled: true,
-                        contentPadding: EdgeInsets.only(left: 20, right: 50),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: kMainColor,
-                            ),
-                            child: Icon(Icons.search, color: kWhite),
+            color: kMainColor,
+            onRefresh: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePgae(),
+                )),
+            child: Stack(
+              children: [
+                CustomScrollView(
+                  physics: BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  controller: _scrollController,
+                  slivers: [
+                    SliverAppBar(
+                      // brightness: Brightness.light,
+                      systemOverlayStyle: SystemUiOverlayStyle(
+                          statusBarBrightness: Brightness.light),
+                      // toolbarHeight: 100,
+                      // expandedHeight: 100,
+                      title: Image.network(
+                          'https://nittoponno.shop/logo/logo.png',
+                          color: Colors.white,
+                          height: 40),
+                      centerTitle: true,
+                      // backgroundColor: Colors.deepPurpleAccent.shade100,
+                      // floating: true,
+                      actions: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: IconButton(
+                            onPressed: () {
+                              totalQuantity = totalQuantity + 50;
+                              setState(() {});
+                              // Navigator.push(context,
+                              //     MaterialPageRoute(builder: (_) => CartScreen()));
+                            },
+                            icon: Stack(clipBehavior: Clip.none, children: [
+                              Icon(Icons.shopping_cart),
+                              totalQuantity == 0
+                                  ? Text('')
+                                  : Positioned(
+                                      top: -4,
+                                      right: -4,
+                                      child: CircleAvatar(
+                                        radius: totalQuantity < 1000 ? 7 : 10,
+                                        backgroundColor: totalQuantity > 10
+                                            ? Colors.green
+                                            : Colors.red,
+                                        child: Text(
+                                          totalQuantity.toString(),
+                                          style: TextStyle(
+                                              fontSize: 8, color: Colors.white),
+                                        ),
+                                      )),
+                            ]),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.green.shade100)),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.deepPurple),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.redAccent)),
-                      ),
-                    ),
-                  )),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: List.generate(
-                              itmemList.length,
-                              (index) => Column(
-                                    children: [
-                                      Text(itmemList[index].title),
-                                      CustomCart(
-                                        quantity: quantity,
-                                        cartModel: itmemList[index],
-                                      ),
-                                    ],
-                                  )),
-                        ),
-                        // SubtitleText12('FOUTO'),
-                        SizedBox(height: 20),
-                        Card(
-                          margin: EdgeInsets.all(0),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 20,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 4,
-                                crossAxisSpacing: 4,
-                                mainAxisSpacing: 4,
-                              ),
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      color: index.isEven
-                                          ? Colors.green
-                                          : Colors.greenAccent.shade100,
-                                      child: Image.network(
-                                        itmemList[0].imgLink,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  SubtitleText12(itmemList[0].title)
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
                       ],
+                      leading: Icon(Icons.abc),
                     ),
-                  ),
+                    SliverPersistentHeader(
+                      floating: true,
+                      pinned: true,
+                      delegate: SliverDelegate(
+                          child: AppBar(
+                        // backgroundColor: kHoverColor,
+                        elevation: 0,
+                        centerTitle: true,
+                        toolbarHeight: 70,
+                        automaticallyImplyLeading: false,
+                        actions: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: IconButton(
+                              onPressed: () {
+                                totalQuantity = totalQuantity + 50;
+                                setState(() {});
+                                // Navigator.push(context,
+                                //     MaterialPageRoute(builder: (_) => CartScreen()));
+                              },
+                              icon: Stack(clipBehavior: Clip.none, children: [
+                                Icon(Icons.shopping_cart),
+                                totalQuantity == 0
+                                    ? Text('')
+                                    : Positioned(
+                                        top: -4,
+                                        right: -4,
+                                        child: CircleAvatar(
+                                          radius: totalQuantity < 1000 ? 7 : 10,
+                                          backgroundColor: totalQuantity > 10
+                                              ? Colors.green
+                                              : Colors.red,
+                                          child: Text(
+                                            totalQuantity.toString(),
+                                            style: TextStyle(
+                                                fontSize: 8,
+                                                color: Colors.white),
+                                          ),
+                                        )),
+                              ]),
+                            ),
+                          )
+                        ],
+                        title: TextFormField(
+                          // textInputAction: TextInputAction.continueAction,
+                          // autocorrect: true,
+                          // smartDashesType: SmartDashesType.enabled,
+
+                          cursorColor: Colors.deepPurple,
+                          controller: _searchController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            // border: InputBorder.none,
+                            hintText: 'Search Products...',
+                            hintMaxLines: 1,
+                            // label: SubtitleText12('dkdk'),
+                            // counterText: 'GOUTOm',
+                            // hintTextDirection: TextDirection.rtl,
+                            // alignLabelWithHint: true,
+                            // hintTextDirection: TextDirection.rtl,
+                            floatingLabelAlignment:
+                                FloatingLabelAlignment.center,
+
+                            hintStyle: GoogleFonts.nunito(
+                              color: Colors.black45,
+                              fontStyle: FontStyle.italic,
+                            ),
+                            // fillColor: Colors.black12,
+                            // filled: true,
+                            contentPadding:
+                                EdgeInsets.only(left: 20, right: 50),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: kMainColor,
+                                ),
+                                child: Icon(Icons.search, color: kWhite),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                    width: 1, color: Colors.green.shade100)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(
+                                  width: 1, color: Colors.deepPurple),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                    width: 1, color: Colors.redAccent)),
+                          ),
+                        ),
+                      )),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Column(
+                          children: [
+                            Column(
+                              children: List.generate(
+                                  itmemList.length,
+                                  (index) => Column(
+                                        children: [
+                                          Text(itmemList[index].title),
+                                          CustomCart(
+                                            quantity: quantity,
+                                            cartModel: itmemList[index],
+                                          ),
+                                        ],
+                                      )),
+                            ),
+                            // SubtitleText12('FOUTO'),
+                            SizedBox(height: 20),
+                            Card(
+                              margin: EdgeInsets.all(0),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: 20,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 4,
+                                    mainAxisSpacing: 4,
+                                  ),
+                                  itemBuilder: (context, index) => Column(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          color: index.isEven
+                                              ? Colors.green
+                                              : Colors.greenAccent.shade100,
+                                          child: Image.network(
+                                            itmemList[0].imgLink,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      SubtitleText12(itmemList[0].title)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
-        ),
-      )),
+            ),
+          )),
     );
   }
 
