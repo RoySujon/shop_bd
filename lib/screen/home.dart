@@ -1,3 +1,5 @@
+// import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -192,61 +194,93 @@ class _HOMEState extends State<HOME> {
                       )),
                     ),
                     SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: List.generate(
+                      child: Column(
+                        children: [
+                          CarouselSlider(
+                              items: List.generate(
                                   itmemList.length,
-                                  (index) => Column(
-                                        children: [
-                                          Text(itmemList[index].title),
-                                          CustomCart(
-                                            quantity: quantity,
-                                            cartModel: itmemList[index],
-                                          ),
-                                        ],
-                                      )),
-                            ),
-                            // SubtitleText12('FOUTO'),
-                            SizedBox(height: 20),
-                            Card(
-                              margin: EdgeInsets.all(0),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12),
-                                child: GridView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: 20,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    crossAxisSpacing: 4,
-                                    mainAxisSpacing: 4,
-                                  ),
-                                  itemBuilder: (context, index) => Column(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          color: index.isEven
-                                              ? Colors.green
-                                              : Colors.greenAccent.shade100,
-                                          child: Image.network(
-                                            itmemList[0].imgLink,
-                                            fit: BoxFit.cover,
-                                          ),
+                                  (index) => ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.network(
+                                          'https://nittoponno.shop/slider/1670569653.jpg',
+                                          fit: BoxFit.cover,
                                         ),
-                                      ),
-                                      SubtitleText12(itmemList[0].title)
-                                    ],
-                                  ),
+                                      )),
+                              options: CarouselOptions(
+                                height: 160,
+                                aspectRatio: 16 / 9,
+                                viewportFraction: .65,
+                                initialPage: 0,
+                                enableInfiniteScroll: true,
+                                reverse: false,
+                                autoPlay: true,
+                                autoPlayInterval: Duration(seconds: 3),
+                                autoPlayAnimationDuration:
+                                    Duration(milliseconds: 800),
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                enlargeCenterPage: true,
+                                // enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                                enlargeFactor: .25,
+                                onPageChanged: (index, reason) {},
+                                scrollDirection: Axis.horizontal,
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                              children: [
+                                Column(
+                                  children: List.generate(
+                                      itmemList.length,
+                                      (index) => Column(
+                                            children: [
+                                              Text(itmemList[index].title),
+                                              CustomCart(
+                                                quantity: quantity,
+                                                cartModel: itmemList[index],
+                                              ),
+                                            ],
+                                          )),
                                 ),
-                              ),
-                            )
-                          ],
-                        ),
+                                // SubtitleText12('FOUTO'),
+                                SizedBox(height: 20),
+                                Card(
+                                  margin: EdgeInsets.all(0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: GridView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: 20,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 4,
+                                        crossAxisSpacing: 4,
+                                        mainAxisSpacing: 4,
+                                      ),
+                                      itemBuilder: (context, index) => Column(
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              color: index.isEven
+                                                  ? Colors.green
+                                                  : Colors.greenAccent.shade100,
+                                              child: Image.network(
+                                                itmemList[0].imgLink,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          SubtitleText12(itmemList[0].title)
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   ],

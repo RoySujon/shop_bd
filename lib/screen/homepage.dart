@@ -1,10 +1,11 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
+import 'package:shop_bd/screen/form.dart';
 import 'package:shop_bd/screen/home.dart';
-import 'package:shop_bd/screen/login_page.dart';
+// import 'package:shop_bd/screen/login_page.dart';
 import 'package:shop_bd/screen/signup_page.dart';
 import 'package:shop_bd/utls/const.dart';
 
@@ -25,19 +26,6 @@ class _HomePgaeState extends State<HomePgae> {
   // int _bottomNavIndex = 0;
   int index = 5;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // Timer(
-    //   Duration(milliseconds: 1500),
-    //   () => Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (context) => buildPage(),
-    //       )),
-    // );
-  }
-
   @override
   Widget build(BuildContext context) {
     print('abc');
@@ -105,7 +93,7 @@ class _HomePgaeState extends State<HomePgae> {
       case 3:
         return SignUpPage();
       case 0:
-        return LoginPage();
+        return InputForm();
       case 5:
       default:
         return HOME();
