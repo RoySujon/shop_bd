@@ -33,7 +33,7 @@ class _SetPhotoScreenState extends State<SetPhotoScreen> {
         Navigator.of(context).pop();
       });
     } on PlatformException catch (e) {
-      print(e);
+      // print(e);
       Navigator.of(context).pop();
     }
   }
