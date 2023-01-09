@@ -230,7 +230,7 @@ class _HOMEState extends State<HOME> {
                                                   MediaQuery.of(context)
                                                       .size
                                                       .height
-                                              ? 300
+                                              ? 500
                                               : 200,
                                           // animateToClosest: true,
                                           // aspectRatio: .1,
