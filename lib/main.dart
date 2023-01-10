@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shop_bd/image_picker/set_photo_screen.dart';
-import 'package:shop_bd/screen/home.dart';
+import 'package:shop_bd/screen/form.dart';
+// import 'package:shop_bd/image_picker/set_photo_screen.dart';
+// import 'package:shop_bd/screen/home.dart';
 import 'package:shop_bd/screen/homepage.dart';
 import 'package:shop_bd/utls/const.dart';
 

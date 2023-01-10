@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_bd/screen/homepage.dart';
 import 'package:shop_bd/utls/const.dart';
 import 'package:shop_bd/utls/widgets.dart';
+import 'package:shop_bd/utls/widgets/call_now.dart';
 import 'package:shop_bd/utls/widgets/custom_cart.dart';
 // import 'package:shop_bd/utls/widgets/custom_text_field.dart';
 
@@ -330,13 +331,18 @@ class _HOMEState extends State<HOME> {
           bottom: 0,
           child: SafeArea(
             child: Column(children: [
-              CircleAvatar(
-                // color: kMainColor,
-                // onPressed: () {},
-                child: Icon(
-                  Icons.facebook,
-                  color: kWhite,
-                  // size: 55,
+              GestureDetector(
+                onTap: () {
+                  callNumber(number: number);
+                },
+                child: CircleAvatar(
+                  // color: kMainColor,
+                  // onPressed: () {},
+                  child: Icon(
+                    Icons.facebook,
+                    color: kWhite,
+                    // size: 55,
+                  ),
                 ),
               ),
               CircleAvatar(
@@ -366,6 +372,7 @@ class _HOMEState extends State<HOME> {
 
   int totalQuantity = 0;
   int quantity = 0;
+  String number = '+8801723330194';
 }
 
 class SliverDelegate extends SliverPersistentHeaderDelegate {
