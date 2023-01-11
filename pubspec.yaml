@@ -51,7 +51,7 @@ dependencies:
   messenger_launcher: ^0.0.2
   # rive: ^0.9.0
   lottie: ^2.1.0
-  bangla_utilities: ^1.0.0
+  # bangla_utilities: ^1.0.0
 
 dev_dependencies:
   flutter_test:
