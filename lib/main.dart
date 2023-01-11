@@ -4,6 +4,8 @@ import 'package:shop_bd/screen/form.dart';
 // import 'package:shop_bd/image_picker/set_photo_screen.dart';
 // import 'package:shop_bd/screen/home.dart';
 import 'package:shop_bd/screen/homepage.dart';
+import 'package:shop_bd/screen/login_page.dart';
+import 'package:shop_bd/screen/searchBar.dart';
 import 'package:shop_bd/utls/const.dart';
 
 void main() {
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
 
       // darkTheme: ThemeData.dark(useMaterial3: true),
 
-      home: HomePgae(),
+      home: SearchBar(),
     );
   }
 }
