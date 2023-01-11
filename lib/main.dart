@@ -6,6 +6,7 @@ import 'package:shop_bd/screen/form.dart';
 import 'package:shop_bd/screen/homepage.dart';
 import 'package:shop_bd/screen/login_page.dart';
 import 'package:shop_bd/screen/searchBar.dart';
+import 'package:shop_bd/screen/search_bar_raw.dart';
 import 'package:shop_bd/utls/const.dart';
 
 void main() {
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
 
       // darkTheme: ThemeData.dark(useMaterial3: true),
 
-      home: SearchBar(),
+      home: SearchBarRaw(),
     );
   }
 }
