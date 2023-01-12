@@ -88,7 +88,15 @@ class _InputFormState extends State<InputForm> {
                 ),
 
                 SizedBox(height: 16),
-
+                IconButton(
+                    onPressed: () {
+                      _selectTime();
+                    },
+                    icon: Icon(Icons.watch_later_outlined)),
+                Text(_time == null
+                    ? TimeOfDay.now().format(context)
+                    : _time!.format(context)),
+                SizedBox(height: 16),
                 CTF(
                     controller: fNameController,
                     hint: 'Enter your Name',
@@ -297,6 +305,20 @@ class _InputFormState extends State<InputForm> {
             ),
           ),
         ));
+  }
+
+  TimeOfDay? _time;
+
+  void _selectTime() async {
+    final TimeOfDay? newTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: 7, minute: 15),
+    );
+    if (newTime != null) {
+      setState(() {
+        _time = newTime;
+      });
+    }
   }
 
 //================> Radio Button Group variable Diclared <==================
