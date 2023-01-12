@@ -17,8 +17,9 @@ class HomePgae extends StatefulWidget {
 }
 
 class _HomePgaeState extends State<HomePgae> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   List<IconData> iconList = [
-    Icons.person,
+    Icons.menu,
     Icons.person,
     Icons.person,
     Icons.person,
@@ -31,6 +32,10 @@ class _HomePgaeState extends State<HomePgae> {
     print('abc');
     // print(index);
     return Scaffold(
+      endDrawer: Drawer(
+        child: Text('GOUTOM'),
+      ),
+      key: _key,
       extendBody: true,
       // primary: true,
       resizeToAvoidBottomInset: false,
@@ -54,6 +59,7 @@ class _HomePgaeState extends State<HomePgae> {
         notchSmoothness: NotchSmoothness.defaultEdge,
         onTap: (index) {
           setState(() {
+            index == 0 ? _key.currentState!.openEndDrawer() : null;
             this.index = index;
           });
         },
@@ -65,15 +71,16 @@ class _HomePgaeState extends State<HomePgae> {
                 width: 1, color: index == 5 ? Colors.red : kMainColor)),
         // foregroundColor: Colors.amber,
         child: Icon(
-          index == 5 ? Icons.favorite : Icons.favorite_border,
+          index == 0 | 5 ? Icons.favorite : Icons.favorite_border,
           color: index == 5 ? kWhite : kMainColor,
         ),
         backgroundColor: index == 5 ? kMainColor : Colors.transparent,
         elevation: 0,
 
         onPressed: () {
-          index = 5;
-          setState(() {});
+          setState(() {
+            index = 5 | 0;
+          });
         },
 
         //params
@@ -87,13 +94,13 @@ class _HomePgaeState extends State<HomePgae> {
   buildPage() {
     switch (index) {
       case 1:
-        return SignUpPage();
+        return InputForm();
       case 2:
         return SignUpPage();
       case 3:
         return SignUpPage();
       case 0:
-        return InputForm();
+      // return buildPage();
       case 5:
       default:
         return HOME();
