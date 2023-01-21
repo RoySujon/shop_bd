@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shop_bd/model/checkout/add_to_cart_screen.dart';
 import 'package:shop_bd/screen/form.dart';
 // import 'package:shop_bd/image_picker/set_photo_screen.dart';
 // import 'package:shop_bd/screen/home.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
 
       // darkTheme: ThemeData.dark(useMaterial3: true),
 
-      home: HomePgae(),
+      home: AddToCartScreen(),
     );
   }
 }
