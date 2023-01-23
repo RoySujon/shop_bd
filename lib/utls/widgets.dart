@@ -5,18 +5,24 @@ class HeadingText extends StatelessWidget {
   const HeadingText(
     this.text, {
     super.key,
+    this.mL,
     this.fs = 16,
     this.fw = FontWeight.w600,
     this.clr = const Color(0xffffffff),
+    this.of,
   });
   final String text;
+  final TextOverflow? of;
   final double? fs;
   final FontWeight? fw;
   final Color? clr;
+  final int? mL;
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
+        maxLines: mL,
+        overflow: of,
         style: GoogleFonts.inter(fontSize: fs, fontWeight: fw, color: clr));
   }
 }
@@ -50,6 +56,7 @@ class SubtitleText12 extends StatelessWidget {
     this.clr = const Color(0xFF000000),
     this.ml,
     this.of,
+    this.td,
   });
   final String text;
   final double? fs;
@@ -57,12 +64,14 @@ class SubtitleText12 extends StatelessWidget {
   final Color? clr;
   final int? ml;
   final TextOverflow? of;
+  final TextDecoration? td;
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
         maxLines: ml,
         overflow: of,
-        style: GoogleFonts.inter(fontSize: fs, fontWeight: fw, color: clr));
+        style: GoogleFonts.inter(
+            fontSize: fs, fontWeight: fw, color: clr, decoration: td));
   }
 }
