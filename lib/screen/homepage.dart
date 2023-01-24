@@ -9,6 +9,8 @@ import 'package:shop_bd/screen/home.dart';
 import 'package:shop_bd/screen/signup_page.dart';
 import 'package:shop_bd/utls/const.dart';
 
+import '../model/checkout/checkout_demo.dart';
+
 class HomePgae extends StatefulWidget {
   const HomePgae({super.key});
 
@@ -21,8 +23,8 @@ class _HomePgaeState extends State<HomePgae> {
   List<IconData> iconList = [
     Icons.menu,
     Icons.person,
-    // Icons.person,
-    // Icons.person,
+    Icons.person,
+    Icons.person,
   ];
   // int _bottomNavIndex = 0;
   int index = 5;
@@ -32,9 +34,7 @@ class _HomePgaeState extends State<HomePgae> {
     print('abc');
     // print(index);
     return Scaffold(
-      endDrawer: Drawer(
-        child: Text('GOUTOM'),
-      ),
+      endDrawer: NavigationDrawer(),
       key: _key,
       extendBody: true,
       // primary: true,
@@ -98,7 +98,7 @@ class _HomePgaeState extends State<HomePgae> {
       case 2:
         return SignUpPage();
       case 3:
-        return SignUpPage();
+        return CheckoutDemoScreen();
       case 0:
       // return buildPage();
       case 5:
