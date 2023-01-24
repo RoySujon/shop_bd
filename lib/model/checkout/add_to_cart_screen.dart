@@ -27,6 +27,7 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(quantity);
     return Scaffold(
       appBar: AppBar(
         title: Text('data'),
@@ -55,8 +56,9 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
             currentPrice: cartList[index].discount?.toDouble() == null
                 ? cartList[index].total
                 : cartList[index].total -
-                    (cartList[index].total *
-                        (cartList[index].discount! / 100))),
+                    (cartList[index].total * (cartList[index].discount! / 100)),
+            num: cartList[index].id,
+            cartModel: cartList[index]),
       ),
     );
   }
@@ -66,8 +68,12 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
       required String name,
       required double discount,
       required double price,
-      required double currentPrice}) {
+      required double currentPrice,
+      required String num,
+      required CartModel cartModel}) {
     return Card(
+      // shadowColor:  Colors.amber : Colors.red,
+      // color: quantity.contains(num) ? Colors.greenAccent.shade100 : null,
       elevation: 5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +130,111 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
                       ),
                     )
                   : SizedBox(),
-              Positioned(bottom: 8, right: 8, child: CustomCountButton())
+              Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            // shape: BoxShape.circle,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.red,
+                                  offset: Offset(-1, 1),
+                                  blurRadius: !isClicked == true ? .1 : 0,
+                                  blurStyle: BlurStyle.outer)
+                            ],
+                            color: Colors.white,
+                            border: Border.all(width: 1, color: Colors.red)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // mainAxisAlignment: MainAxisAlignment.start,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              !isClicked
+                                  ? SizedBox()
+                                  : InkWell(
+                                      // statesController: controller,
+                                      onTapUp: (details) async {
+                                        print(details);
+                                        timer = Timer(
+                                          Duration(seconds: 3),
+                                          () => setState(() {
+                                            isClicked = false;
+                                          }),
+                                        );
+                                      },
+                                      onTap: () {
+                                        if (index > 0) index--;
+                                        // index == 0 ? addCart.remove(num) : null;
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.red,
+                                        size: 16,
+                                      )),
+                              !isClicked && index <= 0
+                                  ? SizedBox()
+                                  : Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: SubtitleText12(
+                                        '${index}',
+                                        fs: 10,
+                                      ),
+                                    ),
+                              InkWell(
+                                  // statesController: controller,
+                                  // statesController: controller,
+                                  onTapUp: (details) async {
+                                    // isClicked = false;
+                                    timer = Timer(
+                                      Duration(seconds: 3),
+                                      () => setState(() {
+                                        isClicked = false;
+                                      }),
+                                    );
+                                  },
+                                  // minWidth: 50,
+                                  onTap: () {
+                                    isClicked = true;
+                                    if (quantity.keys.contains(num)) {
+                                      quantity[num] = (quantity[num]! + 1);
+                                    } else {
+                                      quantity[num] = 1;
+                                    }
+
+                                    // await Timer(
+                                    //     Duration(milliseconds: 800),
+                                    //     () => setState(() {
+                                    //           // isClicked = false;
+                                    //         }));
+                                    index++;
+                                    // isClicked ;
+                                    setState(() {});
+                                  },
+                                  child: Icon(
+                                    !isClicked
+                                        ? Icons.shopping_cart_checkout_sharp
+                                        : Icons.add,
+                                    color: Colors.red,
+                                    size: 16,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ))
             ],
           ),
           Padding(
@@ -164,104 +274,108 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
     );
   }
 
-  Column CustomCountButton() {
-    return Column(
-      // mainAxisSize: MainAxisSize.min,
-      // mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              // shape: BoxShape.circle,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.red,
-                    offset: Offset(-1, 1),
-                    blurRadius: !isClicked == true ? .1 : 0,
-                    blurStyle: BlurStyle.outer)
-              ],
-              color: Colors.white,
-              border: Border.all(width: 1, color: Colors.red)),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                !isClicked
-                    ? SizedBox()
-                    : InkWell(
-                        // statesController: controller,
-                        onTapUp: (details) async {
-                          print(details);
-                          timer = Timer(
-                            Duration(seconds: 3),
-                            () => setState(() {
-                              isClicked = false;
-                            }),
-                          );
-                        },
-                        onTap: () {
-                          if (index > 0) index--;
-                          setState(() {});
-                        },
-                        child: Icon(
-                          Icons.remove,
-                          color: Colors.red,
-                          size: 16,
-                        )),
-                !isClicked && index <= 0
-                    ? SizedBox()
-                    : Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SubtitleText12(
-                          '${index}',
-                          fs: 10,
-                        ),
-                      ),
-                InkWell(
-                    // statesController: controller,
-                    // statesController: controller,
-                    onTapUp: (details) async {
-                      // isClicked = false;
-                      timer = Timer(
-                        Duration(seconds: 3),
-                        () => setState(() {
-                          isClicked = false;
-                        }),
-                      );
-                    },
-                    // minWidth: 50,
-                    onTap: () {
-                      isClicked = true;
-                      // await Timer(
-                      //     Duration(milliseconds: 800),
-                      //     () => setState(() {
-                      //           // isClicked = false;
-                      //         }));
-                      index++;
-                      // isClicked ;
-                      setState(() {});
-                    },
-                    child: Icon(
-                      !isClicked
-                          ? Icons.shopping_cart_checkout_sharp
-                          : Icons.add,
+  CustomCountButton() => Column(
+        // mainAxisSize: MainAxisSize.min,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                // shape: BoxShape.circle,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
                       color: Colors.red,
-                      size: 16,
-                    )),
-              ],
+                      offset: Offset(-1, 1),
+                      blurRadius: !isClicked == true ? .1 : 0,
+                      blurStyle: BlurStyle.outer)
+                ],
+                color: Colors.white,
+                border: Border.all(width: 1, color: Colors.red)),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  !isClicked
+                      ? SizedBox()
+                      : InkWell(
+                          // statesController: controller,
+                          onTapUp: (details) async {
+                            print(details);
+                            timer = Timer(
+                              Duration(seconds: 3),
+                              () => setState(() {
+                                isClicked = false;
+                              }),
+                            );
+                          },
+                          onTap: () {
+                            if (index > 0) index--;
+                            // addCart.remove(num);
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.remove,
+                            color: Colors.red,
+                            size: 16,
+                          )),
+                  !isClicked && index <= 0
+                      ? SizedBox()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: SubtitleText12(
+                            quantity.keys.contains(num)
+                                ? "${quantity[num]}"
+                                : '',
+                            fs: 10,
+                          ),
+                        ),
+                  InkWell(
+                      // statesController: controller,
+                      // statesController: controller,
+                      onTapUp: (details) async {
+                        // isClicked = false;
+                        timer = Timer(
+                          Duration(seconds: 3),
+                          () => setState(() {
+                            isClicked = false;
+                          }),
+                        );
+                      },
+                      // minWidth: 50,
+                      onTap: () {
+                        isClicked = true;
+                        // await Timer(
+                        //     Duration(milliseconds: 800),
+                        //     () => setState(() {
+                        //           // isClicked = false;
+                        //         }));
+                        index++;
+                        // isClicked ;
+                        setState(() {});
+                      },
+                      child: Icon(
+                        !isClicked
+                            ? Icons.shopping_cart_checkout_sharp
+                            : Icons.add,
+                        color: Colors.red,
+                        size: 16,
+                      )),
+                ],
+              ),
             ),
-          ),
-        )
-      ],
-    );
-  }
+          )
+        ],
+      );
 
   // final controller = MaterialStatesController();
   bool isClicked = false;
   int index = 0;
+  int isSelect = 0;
+  Map<String, int> quantity = {};
+  // List addCart = [];
 }

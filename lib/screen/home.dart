@@ -269,7 +269,7 @@ class _HOMEState extends State<HOME> {
                                   children: [
                                     Column(
                                       children: List.generate(
-                                          itmemList.length,
+                                          5,
                                           (index) => CustomCart(
                                                 quantity: quantity,
                                                 cartModel: itmemList[index],

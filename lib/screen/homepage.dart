@@ -21,8 +21,8 @@ class _HomePgaeState extends State<HomePgae> {
   List<IconData> iconList = [
     Icons.menu,
     Icons.person,
-    Icons.person,
-    Icons.person,
+    // Icons.person,
+    // Icons.person,
   ];
   // int _bottomNavIndex = 0;
   int index = 5;
