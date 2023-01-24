@@ -23,8 +23,8 @@ class _HomePgaeState extends State<HomePgae> {
   List<IconData> iconList = [
     Icons.menu,
     Icons.person,
-    Icons.person,
-    Icons.person,
+    Icons.shopping_cart_checkout,
+    Icons.monetization_on,
   ];
   // int _bottomNavIndex = 0;
   int index = 5;
@@ -33,63 +33,85 @@ class _HomePgaeState extends State<HomePgae> {
   Widget build(BuildContext context) {
     print('abc');
     // print(index);
-    return Scaffold(
-      endDrawer: NavigationDrawer(),
-      key: _key,
-      extendBody: true,
-      // primary: true,
-      resizeToAvoidBottomInset: false,
-      // persistentFooterButtons: [Text('data')],
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        backgroundColor: kMainColor,
-        // elevation: ,
-        // gapWidth: 100,
-        iconSize: 40,
-        inactiveColor: kHoverColor,
-        activeColor: kWhite,
-        // splashColor: Colors.amber,
-        borderColor: kBlack,
-        // splashColor: Colors.greenAccent,
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldPop = await showMyDialog();
+        return shouldPop ?? false;
+      },
+      child: Scaffold(
+        endDrawer: NavigationDrawer(),
+        key: _key,
+        extendBody: true,
+        // primary: true,
+        resizeToAvoidBottomInset: false,
+        // persistentFooterButtons: [Text('data')],
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+          backgroundColor: kMainColor,
+          // elevation: ,
+          // gapWidth: 100,
+          iconSize: 40,
+          inactiveColor: kHoverColor,
+          activeColor: kWhite,
+          // splashColor: Colors.amber,
+          borderColor: kBlack,
+          // splashColor: Colors.greenAccent,
 
-        // iconSize: 10,
-        // inactiveColor: Colors.red,
-        icons: iconList,
-        activeIndex: index,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.defaultEdge,
-        onTap: (index) {
-          setState(() {
-            index == 0 ? _key.currentState!.openEndDrawer() : null;
-            this.index = index;
-          });
-        },
-        //other params
-      ),
-      floatingActionButton: FloatingActionButton(
-        shape: CircleBorder(
-            side: BorderSide(
-                width: 1, color: index == 5 ? Colors.red : kMainColor)),
-        // foregroundColor: Colors.amber,
-        child: Icon(
-          index == 0 | 5 ? Icons.favorite : Icons.favorite_border,
-          color: index == 5 ? kWhite : kMainColor,
+          // iconSize: 10,
+          // inactiveColor: Colors.red,
+          icons: iconList,
+          activeIndex: index,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.defaultEdge,
+          onTap: (index) {
+            setState(() {
+              index == 0 ? _key.currentState!.openEndDrawer() : null;
+              this.index = index;
+            });
+          },
+          //other params
         ),
-        backgroundColor: index == 5 ? kMainColor : Colors.transparent,
-        elevation: 0,
+        floatingActionButton: FloatingActionButton(
+          shape: CircleBorder(
+              side: BorderSide(
+                  width: 1, color: index == 5 ? Colors.red : kMainColor)),
+          // foregroundColor: Colors.amber,
+          child: Icon(
+            index == 0 | 5 ? Icons.favorite : Icons.favorite_border,
+            color: index == 5 ? kWhite : kMainColor,
+          ),
+          backgroundColor: index == 5 ? kMainColor : Colors.transparent,
+          elevation: 0,
 
-        onPressed: () {
-          setState(() {
-            index = 5 | 0;
-          });
-        },
+          onPressed: () {
+            setState(() {
+              index = 5 | 0;
+            });
+          },
 
-        //params
+          //params
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: buildPage(),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: buildPage(),
     );
   }
 
+  showMyDialog() => showDialog(
+      builder: (BuildContext context) => AlertDialog(
+            title: Text('Do you want to exit!'),
+            actionsAlignment: MainAxisAlignment.spaceBetween,
+            actions: [
+              TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: Text('NO')),
+              // Spacer(),
+              // SizedBox(width: 100),
+              TextButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: Text('YES')),
+            ],
+          ),
+      context: context);
 //Switch case
   buildPage() {
     switch (index) {
