@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:shop_bd/screen/form.dart';
+import 'package:shop_bd/screen/home.dart';
+import 'package:shop_bd/screen/homepage.dart';
 import 'package:shop_bd/utls/const.dart';
 import 'package:shop_bd/utls/widgets.dart';
 import 'package:collection/collection.dart';
@@ -14,6 +19,7 @@ class CheckoutDemoScreen extends StatefulWidget {
 class _CheckoutDemoScreenState extends State<CheckoutDemoScreen> {
   List<int> val = [];
   final listOfData = CheckOutData.listOfData;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -22,30 +28,111 @@ class _CheckoutDemoScreenState extends State<CheckoutDemoScreen> {
         return shouldPop ?? false;
       },
       child: Scaffold(
-        appBar: AppBar(),
-        drawer: NavigationDrawer(),
-        body: ListView.builder(
-          itemCount: listOfData.length,
-          itemBuilder: (context, index) => ListTile(
-            onTap: () {
-              val.contains(index) ? val.remove(index) : val.add(index);
-              setState(() {});
-              print(val);
-            },
-            iconColor: Colors.red,
-            trailing: Icon(
-                val.contains(index) ? Icons.favorite : Icons.favorite_border),
-            leading: Text(listOfData[index].details),
-            title: Text(val.length.toString()),
-            // trailing: Row(
-            //   children: [],
-            // ),
+        extendBody: true,
+        /* floatingActionButton: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: FloatingActionButton(
+            onPressed: () {},
+          ),
+        ), */
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: kBlack.withOpacity(1),
+                    offset: Offset(0, 1),
+                    blurRadius: 1)
+              ],
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.purple.shade100,
+            ),
+            constraints:
+                BoxConstraints(minHeight: 50, minWidth: double.infinity),
+            // padding: EdgeInsets.symmetric(horizontal: 16),
+            // height: 50,
+            // width: double.infinity,
+
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () => setState(() {
+                      index = 1;
+                    }),
+                    child: Icon(
+                      index == 1
+                          ? Icons.favorite_border_outlined
+                          : Icons.favorite,
+                      color: index == 1 ? kMainColor : kWhite,
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          index = 0;
+                        });
+                      },
+                      child: Icon(
+                        Icons.home_outlined,
+                        color: kWhite,
+                      ),
+                    )),
+                Expanded(
+                    flex: 2,
+                    child: Container(
+                        // height: double.infinity,
+                        constraints: BoxConstraints(minHeight: 50),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: kMainColor,
+                                offset: Offset(1, 1),
+                                blurRadius: 1)
+                          ],
+                          borderRadius: BorderRadius.circular(16),
+                          color: kMainColor,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            // mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              HeadingText('Checkout'),
+                              ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    // visualDensity: VisualDensity.standard,
+                                    backgroundColor: Colors.purple.shade200,
+                                  ),
+                                  onPressed: () {},
+                                  child: Text(
+                                    index.toString(),
+                                    style: TextStyle(color: kWhite),
+                                  ))
+                            ],
+                          ),
+                        ))),
+              ],
+            ),
           ),
         ),
+        // appBar: AppBar(),
+        drawer: NavigationDrawer(),
+        body: pages[index],
       ),
     );
   }
 
+  int index = 0;
+  List<Widget> pages = [HOME(), InputForm()];
   showMyDialog() => showDialog(
       builder: (BuildContext context) => AlertDialog(
             title: Text('Do you want to exit!'),

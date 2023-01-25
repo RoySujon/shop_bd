@@ -9,6 +9,7 @@ import 'package:shop_bd/screen/login_page.dart';
 import 'package:shop_bd/screen/nav_bar_test.dart';
 import 'package:shop_bd/screen/searchBar.dart';
 import 'package:shop_bd/screen/search_bar_raw.dart';
+import 'package:shop_bd/simple_data/simple_page.dart';
 import 'package:shop_bd/utls/const.dart';
 
 import 'model/checkout/checkout_demo.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
 
       // darkTheme: ThemeData.dark(useMaterial3: true),
 
-      home: HomePgae(),
+      home: SimpleScreen(),
     );
   }
 }
