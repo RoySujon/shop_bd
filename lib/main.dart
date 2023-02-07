@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
 
       // darkTheme: ThemeData.dark(useMaterial3: true),
 
-      home: SimpleScreen(),
+      home: HomePgae(),
     );
   }
 }

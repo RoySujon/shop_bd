@@ -2,6 +2,7 @@
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_bd/screen/drawer.dart';
 // import 'package:flutter/services.dart';
 import 'package:shop_bd/screen/form.dart';
 import 'package:shop_bd/screen/home.dart';
@@ -39,7 +40,7 @@ class _HomePgaeState extends State<HomePgae> {
         return shouldPop ?? false;
       },
       child: Scaffold(
-        endDrawer: NavigationDrawer(),
+        drawer: MYDrawer(),
         key: _key,
         extendBody: true,
         // primary: true,
@@ -64,7 +65,7 @@ class _HomePgaeState extends State<HomePgae> {
           notchSmoothness: NotchSmoothness.defaultEdge,
           onTap: (index) {
             setState(() {
-              index == 0 ? _key.currentState!.openEndDrawer() : null;
+              index == 0 ? _key.currentState!.openDrawer() : null;
               this.index = index;
             });
           },
